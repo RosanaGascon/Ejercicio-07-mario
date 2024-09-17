@@ -44,8 +44,8 @@ h1 > strong {
     background-color: #000;
     background-position: -180px -40px;
     background-repeat: no-repeat;
-    opacity: 1; /* Siempre visibles */
-    visibility: visible; /* Todos los recuadros visibles */
+    opacity: 1;
+    visibility: visible;
     position: relative;
     cursor: pointer;
 }
@@ -59,8 +59,8 @@ h1 > strong {
 }
 
 #cajas > div:not([title="Presentado"]) {
-    background-position: -180px -40px; /* Ocultar el fondo al no estar seleccionado */
-    background-color: #000; /* Color de fondo oscuro al no estar activo */
+    background-position: -180px -40px;
+    background-color: #000;
 }
 
 #cajas > div#bowser { background-image: url(../img/bowser.png); }
