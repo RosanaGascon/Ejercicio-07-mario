@@ -1,9 +1,5 @@
-// Función para manejar el clic en el botón
 function presentarPersonaje() {
-    // Mostrar el prompt al usuario
     const nombreIngresado = prompt("¿Quién se presenta hoy? (Mario, Luigi, Bowser, Peach, Yoshi, Toad, Toadette, Daisy)");
-
-    // Diccionario de nombres completos
     const nombresCompletos = {
         "Mario": "Mario",
         "Luigi": "Luigi",
@@ -15,29 +11,32 @@ function presentarPersonaje() {
         "Daisy": "Princesa Daisy"
     };
 
-    // Obtener el nombre completo o "desconocido" si no es válido
     const nombreCompleto = nombresCompletos[nombreIngresado] || "(desconocido)";
-
-    // Mostrar la respuesta en la consola
     console.log(nombreCompleto);
-
-    // Mostrar la respuesta en el span
     document.getElementById("personaje").textContent = nombreCompleto;
 
-    // Si el nombre ingresado es válido, buscar el elemento con el ID correspondiente
     if (nombreCompleto !== "(desconocido)") {
         const idElemento = nombreIngresado.toLowerCase();
         const elemento = document.getElementById(idElemento);
 
-        // Si el elemento existe, establecer el atributo title
         if (elemento) {
-            elemento.title = "Presentado";
+            const elementos = document.querySelectorAll("#cajas > div");
+            
+            // Ocultar todos los personajes con un pequeño retraso para aplicar transiciones
+            elementos.forEach(el => {
+                el.style.opacity = "0"; // Cambia a invisible
+                el.style.visibility = "hidden"; // Cambia a hidden
+                el.removeAttribute("title"); // Remover el título para reiniciar la animación
+            });
+            
+            // Mostrar el personaje seleccionado después de un pequeño retraso
+            setTimeout(() => {
+                elemento.title = "Presentado";
+                elemento.style.opacity = "1"; // Mostrar con transición
+                elemento.style.visibility = "visible"; // Hacer visible
+            }, 500); // Ajusta el tiempo para coincidir con la transición
         }
     }
-
-    // Ocultar el botón después de hacer clic
-    document.getElementById("boton-presentar").style.display = "none";
 }
 
-// Agregar el evento de clic al botón
 document.getElementById("boton-presentar").addEventListener("click", presentarPersonaje);
