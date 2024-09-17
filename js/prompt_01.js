@@ -13,30 +13,35 @@ function presentarPersonaje() {
 
     const nombreCompleto = nombresCompletos[nombreIngresado] || "(desconocido)";
     console.log(nombreCompleto);
-    document.getElementById("personaje").textContent = nombreCompleto;
 
+    // Solo actualizamos el nombre en el HTML si es válido
     if (nombreCompleto !== "(desconocido)") {
+        document.getElementById("personaje").textContent = nombreCompleto;
         const idElemento = nombreIngresado.toLowerCase();
         const elemento = document.getElementById(idElemento);
 
         if (elemento) {
             const elementos = document.querySelectorAll("#cajas > div");
-            
-            // Ocultar todos los personajes con un pequeño retraso para aplicar transiciones
+
+            // Ocultar todos los personajes
             elementos.forEach(el => {
-                el.style.opacity = "0"; // Cambia a invisible
-                el.style.visibility = "hidden"; // Cambia a hidden
-                el.removeAttribute("title"); // Remover el título para reiniciar la animación
+                el.style.opacity = "0"; // Invisibiliza
+                el.style.visibility = "hidden"; // Oculta
+                el.removeAttribute("title"); // Quita el título para reiniciar
             });
-            
-            // Mostrar el personaje seleccionado después de un pequeño retraso
+
+            // Mostrar el personaje seleccionado
             setTimeout(() => {
                 elemento.title = "Presentado";
                 elemento.style.opacity = "1"; // Mostrar con transición
                 elemento.style.visibility = "visible"; // Hacer visible
-            }, 500); // Ajusta el tiempo para coincidir con la transición
+            }, 500); // Ajuste de tiempo para reiniciar transición
         }
+    } else {
+        // Si el nombre es inválido, no se oculta el personaje actual, mantenemos el último mostrado
+        alert("Nombre inválido. Intenta de nuevo con un nombre válido.");
     }
 }
 
+// El botón sigue funcionando siempre
 document.getElementById("boton-presentar").addEventListener("click", presentarPersonaje);
