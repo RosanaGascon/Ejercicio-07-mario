@@ -1,13 +1,27 @@
 function alternarVisibilidad(event) {
-    const elemento = event.target;
+    const elemento = event.currentTarget;
+    const elementos = document.querySelectorAll("#cajas > div");
+    const nombresCompletos = {
+        "mario": "Mario",
+        "luigi": "Luigi",
+        "bowser": "Bowser Morton Koopa",
+        "peach": "Princesa Peach Toadstool",
+        "yoshi": "T. Yoshisaur Munchakoopas",
+        "toad": "Toad",
+        "toadette": "Toadette",
+        "daisy": "Princesa Daisy"
+    };
 
-    if (elemento.style.display === "block") {
-        elemento.style.display = "none";
+    if (elemento.getAttribute('title') === "Presentado") {
+        elemento.removeAttribute("title");
+        document.getElementById("personaje").textContent = "";
     } else {
-        const elementos = document.querySelectorAll("#cajas > div");
-        elementos.forEach(el => el.style.display = "none");
-
-        elemento.style.display = "block";
+        elementos.forEach(el => {
+            el.removeAttribute("title");
+        });
+        elemento.setAttribute('title', "Presentado");
+        const idElemento = elemento.id;
+        document.getElementById("personaje").textContent = nombresCompletos[idElemento] || "(desconocido)";
     }
 }
 

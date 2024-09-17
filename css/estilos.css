@@ -41,23 +41,36 @@ h1 > strong {
     height: 200px;
     border: 10px solid #000;
     transition: background-position .9s linear 2s, border-bottom-color 1.2s, background-color .5s, opacity 0.5s ease, visibility 0.5s ease;
-    transition-delay: .4s;
     background-color: #000;
     background-position: -180px -40px;
     background-repeat: no-repeat;
-    opacity: 0; 
-    visibility: hidden; 
-    position: relative; 
+    opacity: 1; /* Siempre visibles */
+    visibility: visible; /* Todos los recuadros visibles */
+    position: relative;
+    cursor: pointer;
 }
 
 #cajas > div[title="Presentado"] {
     background-position: 20px 20px;
     background-color: #fff;
     border-bottom-color: #fff;
-    opacity: 1; 
-    visibility: visible; 
+    opacity: 1;
+    visibility: visible;
 }
 
+#cajas > div:not([title="Presentado"]) {
+    background-position: -180px -40px; /* Ocultar el fondo al no estar seleccionado */
+    background-color: #000; /* Color de fondo oscuro al no estar activo */
+}
+
+#cajas > div#bowser { background-image: url(../img/bowser.png); }
+#cajas > div#luigi { background-image: url(../img/luigi.png); }
+#cajas > div#mario { background-image: url(../img/mario.png); }
+#cajas > div#peach { background-image: url(../img/peach.png); }
+#cajas > div#yoshi { background-image: url(../img/yoshi.png); }
+#cajas > div#toad { background-image: url(../img/toad.png); }
+#cajas > div#toadette { background-image: url(../img/toadette.png); }
+#cajas > div#daisy { background-image: url(../img/daisy.png); }
 
 #cajas > div:after {
     transition: background-position .8s cubic-bezier(.18, .89, .32, 1.28) .7s, box-shadow .2s linear .7s;
